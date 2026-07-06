@@ -5,9 +5,14 @@
     "license": "GPL-3.0-or-later",
     "architecture": {
         "64bit": {
-            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
+            "url": "https://github.com/CalcProgrammer1/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
             "hash": "a6bb0fbcb7b6eb84214287e3808fadae2777c902efb3dd6cd1e2976f14271c8c",
             "extract_dir": "OpenRGB Windows 64-bit"
+        },
+        "32bit": {
+            "url": "https://github.com/CalcProgrammer1/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_32_6fbcf62.zip",
+            "hash": "d68e4a7d6815c6d762c6d8b6d0faaddfc8514166c5f49b9370df8b378cf6036d",
+            "extract_dir": "OpenRGB Windows 32-bit"
         }
     },
     "bin": "OpenRGB.exe",
@@ -17,5 +22,22 @@
             "OpenRGB"
         ]
     ],
-    "persist": "config"
+    "persist": "config",
+    "checkver": {
+        "url": "https://api.github.com/repos/CalcProgrammer1/OpenRGB/releases/latest",
+        "jsonpath": "$.assets..browser_download_url",
+        "regex": "release_candidate_(?<version>[\\w.]+)/OpenRGB_[\\w.]+_Windows_64_(?<commit>[a-f0-9]{7})\\.zip"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/CalcProgrammer1/OpenRGB/releases/download/release_candidate_$version/OpenRGB_$version_Windows_64_$commit.zip",
+                "extract_dir": "OpenRGB Windows 64-bit"
+            },
+            "32bit": {
+                "url": "https://github.com/CalcProgrammer1/OpenRGB/releases/download/release_candidate_$version/OpenRGB_$version_Windows_32_$commit.zip",
+                "extract_dir": "OpenRGB Windows 32-bit"
+            }
+        }
+    }
 }
