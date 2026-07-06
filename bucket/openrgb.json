@@ -5,11 +5,11 @@
     "license": "GPL-2.0-only",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/CalcProgrammer1/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
+            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
             "extract_dir": "OpenRGB_Windows_64_6fbcf62"
         },
         "32bit": {
-            "url": "https://github.com/CalcProgrammer1/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_32_6fbcf62.zip",
+            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_32_6fbcf62.zip",
             "extract_dir": "OpenRGB_Windows_32_6fbcf62"
         }
     },
@@ -20,7 +20,7 @@
         ]
     ],
     "checkver": {
-        "url": "https://api.github.com/repos/CalcProgrammer1/OpenRGB/releases?per_page=50",
+        "url": "https://codeberg.org/api/v1/repos/OpenRGB/OpenRGB/releases?limit=50",
         "regex": "\"tag_name\":\\s*\"(?<tag>[^\"]*(?:rc|beta|alpha)[^\"]*)\"[\\s\\S]*?\"browser_download_url\":\\s*\"(?<url64>[^\"]*_Windows_64_(?<commit>[\\da-fA-F]{7})\\.zip)\"[\\s\\S]*?\"browser_download_url\":\\s*\"(?<url32>[^\"]*_Windows_32_[\\da-fA-F]{7}\\.zip)\"",
         "replace": "${tag}"
     },
