@@ -1,0 +1,39 @@
+{
+    "version": "1.0rc3",
+    "description": "不依赖制造商软件的RGB灯光控制。",
+    "homepage": "https://openrgb.org/",
+    "license": "GPL-2.0-only",
+    "architecture": {
+        "64bit": {
+            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
+            "extract_dir": "OpenRGB_Windows_64_6fbcf62"
+        },
+        "32bit": {
+            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_32_6fbcf62.zip",
+            "extract_dir": "OpenRGB_Windows_32_6fbcf62"
+        }
+    },
+    "shortcuts": [
+        [
+            "OpenRGB.exe",
+            "OpenRGB"
+        ]
+    ],
+    "checkver": {
+        "url": "https://codeberg.org/api/v1/repos/OpenRGB/OpenRGB/releases?limit=50",
+        "regex": "\"tag_name\":\\s*\"(?<tag>[^\"]*(?:rc|beta|alpha)[^\"]*)\"[\\s\\S]*?\"browser_download_url\":\\s*\"(?<url64>[^\"]*_Windows_64_(?<commit>[\\da-fA-F]{7})\\.zip)\"[\\s\\S]*?\"browser_download_url\":\\s*\"(?<url32>[^\"]*_Windows_32_[\\da-fA-F]{7}\\.zip)\"",
+        "replace": "${tag}"
+    },
+    "autoupdate": {
+        "architecture": {
+            "64bit": {
+                "url": "$matchUrl64",
+                "extract_dir": "OpenRGB_Windows_64_$matchCommit"
+            },
+            "32bit": {
+                "url": "$matchUrl32",
+                "extract_dir": "OpenRGB_Windows_32_$matchCommit"
+            }
+        }
+    }
+}
