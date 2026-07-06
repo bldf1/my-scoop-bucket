@@ -1,6 +1,6 @@
 {
     "version": "1.0rc3",
-    "description": "Open source RGB lighting control software for devices from many manufacturers.",
+    "description": "开源 RGB 灯光控制软件，支持众多厂商的设备。",
     "homepage": "https://openrgb.org",
     "license": "GPL-3.0-or-later",
     "architecture": {
