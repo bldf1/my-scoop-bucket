@@ -16,11 +16,7 @@
     "installer": {
         "script": [
             "& \"$dir\\setup.exe\" /S /D=$dir",
-            "Remove-Item \"$dir\\setup.exe\" -Force",
-            "if (!(Test-Path \"$dir\\Data\\.config_location\")) {",
-            "    New-Item -ItemType Directory -Path \"$dir\\Data\" -Force | Out-Null",
-            "    Set-Content -Encoding ASCII -Path \"$dir\\Data\\.config_location\" -Value 'AppRoot'",
-            "}"
+            "Remove-Item \"$dir\\setup.exe\" -Force"
         ]
     },
     "uninstaller": {
@@ -31,7 +27,12 @@
             "    Stop-Process -Name 'EchoMusic' -Force -ErrorAction SilentlyContinue",
             "    Start-Sleep -Seconds 2",
             "}",
-            "& \"$dir\\Uninstall EchoMusic.exe\" /S"
+            "& \"$dir\\Uninstall EchoMusic.exe\" /S",
+            "$updaterDir = \"$env:LocalAppData\\echo-music-updater\"",
+            "if (Test-Path $updaterDir) {",
+            "    Remove-Item $updaterDir -Recurse -Force -ErrorAction SilentlyContinue",
+            "    Write-Host 'Cleaned up updater cache.' -ForegroundColor Green",
+            "}"
         ]
     },
     "shortcuts": [
@@ -40,13 +41,9 @@
             "Echo Music"
         ]
     ],
-    "persist": "Data",
-    "post_install": [
-        "$updaterDir = \"$env:LocalAppData\\echo-music-updater\"",
-        "if (Test-Path $updaterDir) {",
-        "    Remove-Item $updaterDir -Recurse -Force -ErrorAction SilentlyContinue",
-        "    Write-Host 'Cleaned up updater cache.' -ForegroundColor Green",
-        "}"
+    "link": [
+        "$env:AppData\\echo-music",
+        "$env:AppData\\echo-music-nodejs"
     ],
     "checkver": "github",
     "autoupdate": {
