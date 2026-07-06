@@ -5,7 +5,7 @@
     "license": "MIT",
     "architecture": {
         "64bit": {
-            "url": ""url": "https://github.com/wangyyyqw/epub-gadget/releases/download/v2026.07.01-c65159f/EPUB%E5%B7%A5%E5%85%B7%E7%AE%B1-Windows-amd64.zip"",
+            "url": "https://github.com/wangyyyqw/epub-gadget/releases/download/v2026.07.01-c65159f/EPUB.-Windows-amd64.zip",
             "hash": "ef6722e42e4e2da367fe8990a9ee22151ea33b3164a5e217bbc495cfff770761"
         }
     },
@@ -23,7 +23,7 @@
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "https://github.com/wangyyyqw/epub-gadget/releases/download/v$version/EPUB工具箱-Windows-amd64.zip"
+                "url": "https://github.com/wangyyyqw/epub-gadget/releases/download/v$version/EPUB.-Windows-amd64.zip"
             }
         }
     }
