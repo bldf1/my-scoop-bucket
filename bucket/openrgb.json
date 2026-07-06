@@ -3,49 +3,19 @@
     "description": "Open source RGB lighting control software for devices from many manufacturers.",
     "homepage": "https://openrgb.org",
     "license": "GPL-3.0-or-later",
-    "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
-    "hash": "sha256:ab6b0fbcb7b6eb84214287e3808fadde2777c902efb3dd6cd1e2976f14271c8c",
     "architecture": {
         "64bit": {
             "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
-            "hash": "sha256:ab6b0fbcb7b6eb84214287e3808fadde2777c902efb3dd6cd1e2976f14271c8c",
+            "hash": "a6bb0fbcb7b6eb84214287e3808fadae2777c902efb3dd6cd1e2976f14271c8c",
             "extract_dir": "OpenRGB Windows 64-bit"
-        },
-        "32bit": {
-            "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_32_6fbcf62.zip",
-            "hash": "sha256:5a8e7d9f2b1c4e6a8d9f0b3c1e2d4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e",
-            "extract_dir": "OpenRGB Windows 32-bit"
         }
     },
-    "bin": [
-        "OpenRGB Windows 64-bit\\OpenRGB.exe"
-    ],
+    "bin": "OpenRGB.exe",
     "shortcuts": [
         [
-            "OpenRGB Windows 64-bit\\OpenRGB.exe",
+            "OpenRGB.exe",
             "OpenRGB"
         ]
     ],
-    "persist": [
-        "config"
-    ],
-    "checkver": {
-        "url": "https://codeberg.org/OpenRGB/OpenRGB/releases",
-        "regex": "release_candidate_(\\d+\\.\\d+rc\\d+)"
-    },
-    "autoupdate": {
-        "architecture": {
-            "64bit": {
-                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_$major.$minorrc$patch/OpenRGB_$major.$minorrc$patch_Windows_64_6fbcf62.zip",
-                "extract_dir": "OpenRGB Windows 64-bit"
-            },
-            "32bit": {
-                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_$major.$minorrc$patch/OpenRGB_$major.$minorrc$patch_Windows_32_6fbcf62.zip",
-                "extract_dir": "OpenRGB Windows 32-bit"
-            }
-        },
-        "hash": {
-            "url": "$url.sha256"
-        }
-    }
+    "persist": "config"
 }
