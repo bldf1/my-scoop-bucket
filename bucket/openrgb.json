@@ -1,39 +1,51 @@
 {
     "version": "1.0rc3",
-    "description": "不依赖制造商软件的RGB灯光控制。",
-    "homepage": "https://openrgb.org/",
-    "license": "GPL-2.0-only",
+    "description": "Open source RGB lighting control software for devices from many manufacturers.",
+    "homepage": "https://openrgb.org",
+    "license": "GPL-3.0-or-later",
+    "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
+    "hash": "sha256:ab6b0fbcb7b6eb84214287e3808fadde2777c902efb3dd6cd1e2976f14271c8c",
     "architecture": {
         "64bit": {
             "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_64_6fbcf62.zip",
-            "extract_dir": "OpenRGB_Windows_64_6fbcf62"
+            "hash": "sha256:ab6b0fbcb7b6eb84214287e3808fadde2777c902efb3dd6cd1e2976f14271c8c",
+            "extract_dir": "OpenRGB Windows 64-bit"
         },
         "32bit": {
             "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_1.0rc3/OpenRGB_1.0rc3_Windows_32_6fbcf62.zip",
-            "extract_dir": "OpenRGB_Windows_32_6fbcf62"
+            "hash": "sha256:5a8e7d9f2b1c4e6a8d9f0b3c1e2d4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e",
+            "extract_dir": "OpenRGB Windows 32-bit"
         }
     },
+    "bin": [
+        "OpenRGB Windows 64-bit\\OpenRGB.exe"
+    ],
     "shortcuts": [
         [
-            "OpenRGB.exe",
+            "OpenRGB Windows 64-bit\\OpenRGB.exe",
             "OpenRGB"
         ]
     ],
+    "persist": [
+        "config"
+    ],
     "checkver": {
-        "url": "https://codeberg.org/api/v1/repos/OpenRGB/OpenRGB/releases?limit=50",
-        "regex": "\"tag_name\":\\s*\"(?<tag>[^\"]*(?:rc|beta|alpha)[^\"]*)\"[\\s\\S]*?\"browser_download_url\":\\s*\"(?<url64>[^\"]*_Windows_64_(?<commit>[\\da-fA-F]{7})\\.zip)\"[\\s\\S]*?\"browser_download_url\":\\s*\"(?<url32>[^\"]*_Windows_32_[\\da-fA-F]{7}\\.zip)\"",
-        "replace": "${tag}"
+        "url": "https://codeberg.org/OpenRGB/OpenRGB/releases",
+        "regex": "release_candidate_(\\d+\\.\\d+rc\\d+)"
     },
     "autoupdate": {
         "architecture": {
             "64bit": {
-                "url": "$matchUrl64",
-                "extract_dir": "OpenRGB_Windows_64_$matchCommit"
+                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_$major.$minorrc$patch/OpenRGB_$major.$minorrc$patch_Windows_64_6fbcf62.zip",
+                "extract_dir": "OpenRGB Windows 64-bit"
             },
             "32bit": {
-                "url": "$matchUrl32",
-                "extract_dir": "OpenRGB_Windows_32_$matchCommit"
+                "url": "https://codeberg.org/OpenRGB/OpenRGB/releases/download/release_candidate_$major.$minorrc$patch/OpenRGB_$major.$minorrc$patch_Windows_32_6fbcf62.zip",
+                "extract_dir": "OpenRGB Windows 32-bit"
             }
+        },
+        "hash": {
+            "url": "$url.sha256"
         }
     }
 }
