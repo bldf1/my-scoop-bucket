@@ -1,18 +1,28 @@
-name: Scoop Autoupdate
+name: Scoop Autoupdate (Private)
+
 on:
   schedule:
-    - cron: '0 */6 * * *'  # 每6小时执行一次
-  workflow_dispatch:      # 支持手动触发
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+# 【新增】防止并发执行导致 push 冲突
+concurrency:
+  group: scoop-autoupdate
+  cancel-in-progress: true
 
 jobs:
-  check-and-update:
+  update:
     runs-on: windows-latest
+    permissions:
+      contents: write
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Check for updates and create PR
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # 【建议】完整历史，避免 checkver 比对异常
+
+      - name: Update manifests
         uses: scoopinstaller/scoop-checkver-action@v1
         with:
-          create-pr: true
-          pr-labels: auto-update
-          branch-prefix: autoupdate/
+          create-pr: false
