@@ -5,7 +5,6 @@ on:
     - cron: '0 */6 * * *'
   workflow_dispatch:
 
-# 【新增】防止并发执行导致 push 冲突
 concurrency:
   group: scoop-autoupdate
   cancel-in-progress: true
@@ -20,9 +19,11 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0  # 【建议】完整历史，避免 checkver 比对异常
+          fetch-depth: 0
 
       - name: Update manifests
-        uses: scoopinstaller/scoop-checkver-action@v1
+        uses: scoopinstaller/scoop-checkver-action@v2
         with:
           create-pr: false
+          # 可选：自定义提交信息
+          # commit-message: 'chore: update $app to $version'
