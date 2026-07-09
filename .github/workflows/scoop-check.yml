@@ -21,9 +21,27 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Update manifests
-        uses: scoopinstaller/scoop-checkver-action@v1
-        with:
-          create-pr: false
-          # 可选：自定义提交信息
-          # commit-message: 'chore: update $app to $version'
+      - name: Install Scoop & Checkver
+        shell: pwsh
+        run: |
+          # 安装 Scoop（如果尚未安装）
+          if (-not (Get-Command scoop -ErrorAction SilentlyContinue)) {
+              Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+          }
+          
+          # 添加当前 bucket
+          scoop bucket add my-scoop-bucket .
+          
+          # 执行 checkver 并自动更新
+          # -u: 自动更新 manifest
+          # -f: 强制检查（忽略缓存）
+          # --commit: 自动提交更改
+          scoop checkver -u -f --commit "chore: update {{.AppName}} to {{.Version}}"
+          
+          # 推送更改（仅当有 commit 时）
+          if (git diff --quiet HEAD~1) {
+            Write-Host "No updates found."
+          } else {
+            git push origin main
+            Write-Host "Updates pushed successfully."
+          }
