@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: Update manifests
-        uses: scoopinstaller/scoop-checkver-action@v2
+        uses: scoopinstaller/scoop-checkver-action@v1
         with:
           create-pr: false
           # 可选：自定义提交信息
