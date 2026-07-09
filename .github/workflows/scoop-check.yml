@@ -1,0 +1,18 @@
+name: Scoop Autoupdate
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # 每6小时执行一次
+  workflow_dispatch:      # 支持手动触发
+
+jobs:
+  check-and-update:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check for updates and create PR
+        uses: scoopinstaller/scoop-checkver-action@v1
+        with:
+          create-pr: true
+          pr-labels: auto-update
+          branch-prefix: autoupdate/
